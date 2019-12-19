@@ -1,17 +1,19 @@
-import { createMuiTheme } from '@material-ui/core'
-import { cyan, deepPurple } from '@material-ui/core/colors'
+import CssBaseline from '@material-ui/core/CssBaseline'
 import { ThemeProvider } from '@material-ui/styles'
 import App from 'next/app'
+import Head from 'next/head'
 import React from 'react'
-
-const theme = createMuiTheme({
-  palette: {
-    primary: deepPurple,
-    secondary: cyan,
-  },
-})
+import { theme } from '../lib/theme'
 
 class MyApp extends App {
+  componentDidMount() {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side')
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles)
+    }
+  }
+
   // Only uncomment this method if you have blocking data requirements for
   // every single page in your application. This disables the ability to
   // perform automatic static optimization, causing every page in your app to
@@ -27,9 +29,15 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
     return (
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <>
+        <Head>
+          <title>My page</title>
+        </Head>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </>
     )
   }
 }

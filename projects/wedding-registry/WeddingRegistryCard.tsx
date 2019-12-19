@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Theme } from '@material-ui/core';
+import Link from 'next/link'
 
 const WeddingRegistryCard = () => {
   const classes = useStyles({})
@@ -30,9 +31,11 @@ const WeddingRegistryCard = () => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" className={classes.button}>
-          Visit the registry
-        </Button>
+        <Link href="/wedding-registry">
+          <Button size="small" className={classes.button}>
+            Visit the registry
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );
@@ -48,7 +51,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: '16px 0'
   },
   media: {
-    height: "256px",
+    height: "140px",
   },
   button: {
     color: theme.palette.primary.light

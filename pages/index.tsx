@@ -63,8 +63,8 @@ const Home = () => {
       <Container className={classes.cardsContainer} maxWidth="md">
         <Fade in={showNames} timeout={time}>
           <div>
-            <WeddingPuzzleCard />
             <WeddingRegistryCard />
+            <WeddingPuzzleCard />
           </div>
         </Fade>
       </Container>
